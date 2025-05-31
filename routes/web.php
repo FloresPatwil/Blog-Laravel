@@ -9,6 +9,14 @@ use PhpParser\Node\Expr\AssignOp\Pow;
 // Route::get('/', function () { 
 Route::get('/', [HomeController::class, 'index']); //NO DEBERIA D IR INDEX SI EL METODO FUERA INVOKE
 
+/*
+Opcion N3
+*/
+Route::apiResource('posts',PostController::class);
+/*
+Opcion N2
+/*
+//GET, POST, PUT, PATCH, DELETE
 Route::get('/posts', [PostController::class, 'index'])
     ->name('posts.index'); // Ruta para listar los posts
 Route::get('/posts/create', [PostController::class, 'create'])
@@ -17,16 +25,22 @@ Route::post('/posts', [PostController::class, 'store'])
     ->name('posts.store'); // Ruta para almacenar un nuevo post
 Route::get('/posts/{post}', [PostController::class, 'show'])
     ->name('posts.show'); // Ruta para mostrar un post específico
-//GET, POST, PUT, PATCH, DELETE
 Route::get('/posts/{post}/edit', [PostController::class, 'edit'])
     ->name('posts.edit'); // Ruta para mostrar el formulario de edición de un post específico
 Route::put('/posts/{post}', [PostController::class, 'update'])
     ->name('posts.update'); // Ruta para actualizar un post específico
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])
     ->name('posts.destroy'); // Ruta para eliminar un post específico
+/*
 
-
-
+Opcion N1
+Route::resource('posts', PostController::class); // Ruta para manejar los recursos de los posts
+// ->only(['index', 'show']); // Ruta para manejar los recursos de los posts, solo index y show
+// ->except(['create', 'edit']); // Ruta para manejar los recursos de los posts, excepto create y edit
+// ->parameters(['articulos'=>'posts']); // Ruta para manejar los recursos de los posts, con un nombre específico])
+// ->names('posts'); // Ruta para manejar los recursos de los posts, con un nombre específico
+ */
+// O SINO REEMPLAZAR POR
 
 Route::get('prueba', function () {
     $post = Post::find(1);
