@@ -19,6 +19,7 @@ class PostController extends Controller
     }
     public function store(Request $request)
     {
+        /* PRIMERO
         //return $request->all(); // Return all request data as JSON
         $post = new Post;
         $post->title = $request->title;
@@ -28,6 +29,14 @@ class PostController extends Controller
         $post->save();
         //return redirect('/posts'); // Redirect to the posts index after storing
         return redirect()->route('posts.index'); // Redirect to the newly created post
+        */
+        Post::create([
+            'title' => $request->title,
+            'slug' => $request->slug, // Generate a slug from the title
+            'content' => $request->content,
+            'categoria' => $request->category,
+        ]);
+        return redirect()->route('posts.index'); // Redirect to the posts index after storing
     }
     public function edit(Post $post)
     {
@@ -41,6 +50,9 @@ class PostController extends Controller
     }
     public function update(Request $request, Post $post)
     {
+        $post->update($request->all());
+        return redirect()->route('posts.show', $post); // Redirect to the updated post
+        /* OPCION UNO NO TAN SEGURA
         //$post = Post::find($post); // Find the post by ID // No longer needed since we are using route model binding
         $post->title = $request->title;
         $post->slug = $request->slug; // Generate a slug from the title
@@ -49,6 +61,7 @@ class PostController extends Controller
         $post->save();
         //return redirect('/posts/'.$post); // Redirect to the posts index after updating
         return redirect()->route('posts.show', $post); // Redirect to the updated post'); // Redirect to the updated post
+        */
     }
     public function destroy(Post $post)
     {
