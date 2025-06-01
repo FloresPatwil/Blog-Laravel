@@ -29,4 +29,8 @@ class Post extends Model
     //         }
     //     );
     // } 
+    public function getRouteKeyName()
+    {   // Model/Post
+        return 'slug'; // Cambia el campo por el que se buscará el modelo en las rutas
+    }
 }

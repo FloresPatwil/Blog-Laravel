@@ -22,32 +22,39 @@ class PostController extends Controller
         //return $request->all(); // Return all request data as JSON
         $post = new Post;
         $post->title = $request->title;
+        $post->slug = $request->slug; // Generate a slug from the title
         $post->content = $request->content;
         $post->categoria = $request->category;
         $post->save();
-        return redirect('/posts'); // Redirect to the posts index after storing
+        //return redirect('/posts'); // Redirect to the posts index after storing
+        return redirect()->route('posts.index'); // Redirect to the newly created post
     }
-    public function edit($post)
+    public function edit(Post $post)
     {
-        $post = Post::find($post); // Find the post by ID
+        // $post = Post::find($post); // Find the post by ID // No longer needed since we are using route model binding
         return view('posts.edit', compact('post')); // Return the edit view with the post data
     }
-    public function show($post)
+    public function show(Post $post) //Antes parametro era $post
     {
-        $post = Post::find($post); // Find the post by ID
+        //$post = Post::find($post); // Find the post by ID // No longer needed since we are using route model binding
         return view('posts.show', compact('post')); //['post' => 'Hola mundo']
     }
-    public function update(Request $request, $post)
+    public function update(Request $request, Post $post)
     {
-        $post = Post::find($post); // Find the post by ID
+        //$post = Post::find($post); // Find the post by ID // No longer needed since we are using route model binding
         $post->title = $request->title;
+        $post->slug = $request->slug; // Generate a slug from the title
         $post->content = $request->content;
         $post->categoria = $request->category;
         $post->save();
-        return redirect('/posts/'.$post->id); // Redirect to the posts index after updating
+        //return redirect('/posts/'.$post); // Redirect to the posts index after updating
+        return redirect()->route('posts.show', $post); // Redirect to the updated post'); // Redirect to the updated post
     }
-    public function destroy($post)
+    public function destroy(Post $post)
     {
-        return "Eliminando el post {$post}";
+        //$post = Post::find($post); // Find the post by ID // No longer needed since we are using route model binding
+        $post->delete(); // Delete the post
+        //return redirect('/posts'); // Redirect to the posts index after deleting
+        return redirect()->route('posts.index'); // Redirect to the posts index after deleting
     }
 }

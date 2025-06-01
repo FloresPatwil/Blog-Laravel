@@ -16,11 +16,11 @@
         {{ $post->content }}
     </p>
     {{-- <a href="/posts/{{ $post->id }}/edit"> --}}
-    <a href={{ route('posts.edit', $post->id) }}>
+    <a href={{ route('posts.edit', $post) }}>
         Editar Post
     </a>
     {{-- <form action="/posts/{{ $post->id }}" method="POST"> --}}
-    <form {{ route('posts.destroy', $post->id) }} method="POST">
+    <form {{ route('posts.destroy', $post) }} method="POST">
         @csrf
         @method('DELETE')
         <button type="submit">

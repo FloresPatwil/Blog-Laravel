@@ -12,7 +12,8 @@ Route::get('/', [HomeController::class, 'index']); //NO DEBERIA D IR INDEX SI EL
 /*
 Opcion N3
 */
-Route::apiResource('posts',PostController::class);
+Route::resource('posts',PostController::class);
+// Route::apiResource('posts',PostController::class);
 /*
 Opcion N2
 /*

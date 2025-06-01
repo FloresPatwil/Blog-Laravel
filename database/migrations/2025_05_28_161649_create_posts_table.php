@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug')->unique(); // Agregar campo slug único
             $table->longText('content');
             $table->string('categoria');
             $table->timestamp('published_at');
