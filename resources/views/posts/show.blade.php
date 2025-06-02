@@ -13,8 +13,11 @@
         <b>Categoria</b> {{ $post->categoria }}
     </p>
     <p>
-        {{ $post->content }}
+        <b>Contenido</b> {{ $post->content }}
     </p>
+    {{-- <p>
+        <b>Slug</b> {{ $post->slug }}
+    </p> --}}
     {{-- <a href="/posts/{{ $post->id }}/edit"> --}}
     <a href={{ route('posts.edit', $post) }}>
         Editar Post
