@@ -12,9 +12,9 @@ class Post extends Model
     // protected $fillable = ['title', 'content', 'categoria'];
     // protected $table = 'posts'; // Nombre de la tabla en la base de datos
     //OPCION DOS
-    // protected $guarded = [
-    //     'is_active', // Campo booleano que indica si el post está activo
-    // ];
+    protected $guarded = [
+        'is_active', // Campo booleano que indica si el post está activo
+    ];
     protected $fillable = [
         'title',
         'slug', // Slug for SEO-friendly URLs

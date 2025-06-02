@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\StorePostRequest; // Assuming you have a StorePostRequest for validation
 use App\Models\Post; // Assuming you have a Post model
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -16,17 +18,16 @@ class PostController extends Controller
     {
         return view('posts.create');
     }
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        $request->validate([
+        /*$request->validate([
             'title' => ['required', 'min:5', 'max:255'],
             'slug' => ['required', 'unique:posts,slug', 'regex:/^[a-z0-9-]+$/'], // slug válido
             'categoria' => ['required'],
             'content' => ['required'],
-        ]);
+        ]);*/
 
-        Post::create($request->all());
-
+        Post::create($request->validated());
         return redirect()->route('posts.index');
     }
 
