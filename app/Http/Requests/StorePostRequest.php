@@ -28,12 +28,14 @@ class StorePostRequest extends FormRequest
             'content' => ['required'],
         ];
     }
-    public function messages(): array
+    /*public function messages(): array
     {
         return [
             'title.required' => 'The :attribute field is required.(edited)',
         ];
     }
+    */
+    /*
     public function attributes()
     {
         return [
@@ -42,5 +44,5 @@ class StorePostRequest extends FormRequest
             'categoria' => 'Category',
             'content' => 'Content',
         ];
-    }
+    }*/
 }

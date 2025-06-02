@@ -2,6 +2,7 @@
 <x-app-layouts>
     <h1>"Formulario para crear un nuevo POST."</h1>
     {{-- <form action="/posts" method="POST"> --}}
+    {{ __('Client Closed Request') }}
     @if ($errors->any())
         <div class="alert alert-danger">
             <h2>Errores</h2>
