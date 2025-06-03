@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>
-    Correo por aprobar
-</h1>
+<x-mail::message>
+# Correo por aprobar
 
-<p>
+<x-mail::panel>
     Se ha creado un nuevo post que requiere tu aprobación. Por favor, revisa el contenido y aprueba o rechaza la publicación.
-</p>
-<a href="{{ route('posts.show', $post) }}">
+</x-mail::panel>
+
+<x-mail::button url="{{ route('posts.show', $post) }}"
+    color="success">
     Click here to accept
-</a>
-</body>
-</html>
+</x-mail::button>
+
+</x-mail::message>

@@ -40,7 +40,7 @@ class PostCreateMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.post-create', // Assuming you have a view for the email
+            markdown: 'emails.post-create', // Antes fuee view ahora markdown
         );
     }
 
