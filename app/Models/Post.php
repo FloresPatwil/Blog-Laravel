@@ -9,9 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-    // protected $fillable = ['title', 'content', 'categoria'];
-    // protected $table = 'posts'; // Nombre de la tabla en la base de datos
-    //OPCION DOS
     protected $guarded = [
         'is_active', // Campo booleano que indica si el post está activo
     ];
@@ -30,17 +27,6 @@ class Post extends Model
             'is_active' => 'boolean', // Cast to boolean
         ];
     }
-    // protected function title(): Attribute  // Setear el campo title a mayusculas
-    // {
-    //     return Attribute::make(
-    //         set: function ($value){
-    //             return strtolower($value);
-    //         },
-    //         get: function ($value) {
-    //             return ucfirst($value);
-    //         }
-    //     );
-    // } 
     public function getRouteKeyName()
     {   // Model/Post
         return 'slug'; // Cambia el campo por el que se buscará el modelo en las rutas

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\StorePostRequest; // Assuming you have a StorePostRequest for validation
+use App\Mail\PostCreateMail;
 use App\Models\Post; // Assuming you have a Post model
 use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PostController extends Controller
 {
@@ -20,14 +22,9 @@ class PostController extends Controller
     }
     public function store(StorePostRequest $request)
     {
-        /*$request->validate([
-            'title' => ['required', 'min:5', 'max:255'],
-            'slug' => ['required', 'unique:posts,slug', 'regex:/^[a-z0-9-]+$/'], // slug válido
-            'categoria' => ['required'],
-            'content' => ['required'],
-        ]);*/
-
-        Post::create($request->validated());
+        //Post::create($request->validated());
+        $post = Post::create($request->validated());
+        Mail::to('pwif1@example.com')->send(new PostCreateMail($post)); // Send an email after creating a post
         return redirect()->route('posts.index');
     }
 
