@@ -10,6 +10,10 @@ class Pust extends Model
     use HasFactory;
     protected $fillable = [
         'content',
-        'user_id',
+        'title',
     ];
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

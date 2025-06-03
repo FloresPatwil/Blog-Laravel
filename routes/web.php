@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Models\Comment;
 use App\Models\Phone;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
+use App\Models\Pust;
 use App\Models\User;
 use PhpParser\Node\Expr\AssignOp\Pow;
 
@@ -28,17 +30,25 @@ Route::get('prueba0', function () {
     dd($post->is_active);
 });
 Route::get('prueba',function(){
-    // User::create([
-    //     'name' => 'Pwiff Gamer',
-    //     'email' => 'pwiff@example.com',
-    //     'password' => bcrypt('1234'),
-    // ]);
-    // Phone::create([
-    //     'number' => '123456789',
-    //     'user_id' => 1, // Asegúrate de que el usuario con ID 1 exista
-    // ]);
-    $user = User::where('id',1)//User::find(1);
-        ->with('phone') // Carga la relación 'phone' para el usuario
-        ->first(); // Obtiene el primer usuario con ID 1
-    return $user; // Accede al número de teléfono del usuario
+    // Crea un comentario para un Pust específico
+    // Primero, asegúrate de que el Pust con ID 2 exista
+    // y que tenga la relación con los comentarios configurada correctamente.
+    // Puedes usar el método create para crear un nuevo comentario
+    // y asociarlo con el Pust.
+    $pust = Pust::find(2);
+    $pust->comments()->create([
+        'content' => 'Comentario de prueba',
+    ]);
+    return 'Comentario creado correctamente';
+    /*
+    $comment = Comment::find(1);
+    return $comment->pust; // Obtiene todos los comentarios relacionados con el Pust
+    */
+    /*
+    Comment::create([
+        'pust_id' => 1,
+        'content' => 'Comentario de prueba 2',
+    ]);
+    return 'Commentario 2 creado correctamente';
+    */
 });

@@ -9,4 +9,9 @@ class Phone extends Model
 {
     use HasFactory;
     protected $fillable = ['number', 'user_id'];
+    //relacion inversa
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
