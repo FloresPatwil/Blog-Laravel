@@ -12,8 +12,15 @@ class Pust extends Model
         'content',
         'title',
     ];
+    // UNO A MUCHOS
     public function comments()
     {
         return $this->hasMany(Comment::class);
     }
+    //MUCHOS A MUCHOS
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
 }

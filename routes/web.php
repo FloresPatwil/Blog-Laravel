@@ -29,26 +29,17 @@ Route::get('prueba0', function () {
     //return $post->created_at->format('Y-m-d'); // Formato de fecha y hora
     dd($post->is_active);
 });
-Route::get('prueba',function(){
-    // Crea un comentario para un Pust específico
-    // Primero, asegúrate de que el Pust con ID 2 exista
-    // y que tenga la relación con los comentarios configurada correctamente.
-    // Puedes usar el método create para crear un nuevo comentario
-    // y asociarlo con el Pust.
+Route::get('prueba01',function(){
     $pust = Pust::find(2);
     $pust->comments()->create([
         'content' => 'Comentario de prueba',
     ]);
     return 'Comentario creado correctamente';
-    /*
-    $comment = Comment::find(1);
-    return $comment->pust; // Obtiene todos los comentarios relacionados con el Pust
-    */
-    /*
-    Comment::create([
-        'pust_id' => 1,
-        'content' => 'Comentario de prueba 2',
-    ]);
-    return 'Commentario 2 creado correctamente';
-    */
+});
+Route::get('pustConUnoDosTag', function () {
+    $pust = Pust::find(1);
+    $pust->tags()->sync([1,3]); // Asocia el tag con ID 1 al pust
+    //return $pust->tags; //Todos los tags asociados al pust
+    //$pust->tags()->detach([2]); // Desasocia los tags con ID 1 y 2 del pust
+    return $pust->tags;
 });
